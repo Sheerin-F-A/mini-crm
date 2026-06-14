@@ -29,6 +29,19 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <body className="flex min-h-screen bg-slate-50 text-slate-900">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch (_) {}
+            `,
+          }}
+        />
         <Navigation />
         <main className="flex-1 flex flex-col h-screen overflow-y-auto">
           {children}

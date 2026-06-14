@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Users, Zap, BarChart3, Minus, Square, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { LayoutDashboard, Users, Zap, BarChart3, Minus, Square, X, Moon, Sun } from 'lucide-react';
 
 const navItems = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
@@ -13,6 +14,26 @@ const navItems = [
 
 export function Navigation() {
   const pathname = usePathname();
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // Check initial state from the class we injected in layout.tsx
+    if (document.documentElement.classList.contains('dark')) {
+      setIsDark(true);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    if (isDark) {
+      document.documentElement.classList.remove('dark');
+      localStorage.theme = 'light';
+      setIsDark(false);
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.theme = 'dark';
+      setIsDark(true);
+    }
+  };
 
   return (
     <div className="w-64 bg-[var(--retro-bg)] border-r-2 border-[var(--retro-border)] min-h-screen flex flex-col z-10 relative">
@@ -53,13 +74,23 @@ export function Navigation() {
         })}
       </nav>
       
-      <div className="p-4 m-4 retro-box bg-[var(--retro-panel)]">
-        <p className="font-bold text-sm uppercase mb-1">System Status</p>
-        <div className="flex items-center gap-2 text-xs font-bold text-green-600">
-          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse border border-[var(--retro-border)]"></span>
-          ONLINE
+      <div className="p-4 m-4 space-y-4">
+        <button 
+          onClick={toggleTheme}
+          className="retro-btn w-full bg-[var(--retro-panel)] text-[var(--retro-text)] py-2 px-4 flex items-center justify-center gap-2 uppercase text-sm"
+        >
+          {isDark ? <Sun size={16} /> : <Moon size={16} />}
+          {isDark ? 'LIGHT_MODE' : 'DARK_MODE'}
+        </button>
+
+        <div className="retro-box bg-[var(--retro-panel)] p-4">
+          <p className="font-bold text-sm uppercase mb-1">System Status</p>
+          <div className="flex items-center gap-2 text-xs font-bold text-green-600">
+            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse border border-[var(--retro-border)]"></span>
+            ONLINE
+          </div>
+          <p className="mt-2 text-xs text-[var(--retro-text-muted)] font-mono">v1.0-RETRO</p>
         </div>
-        <p className="mt-2 text-xs text-[var(--retro-text-muted)] font-mono">v1.0-RETRO</p>
       </div>
     </div>
   );
