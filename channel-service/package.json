@@ -1,0 +1,12 @@
+{
+  "name": "channel-service",
+  "version": "1.0.0",
+  "description": "External stubbed channel service",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
