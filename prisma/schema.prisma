@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Customer {
+  id             String          @id @default(cuid())
+  name           String
+  email          String          @unique
+  phone          String?
+  city           String
+  totalSpend     Float           @default(0)
+  lastOrderDate  DateTime?
+  orders         Order[]
+  communications Communication[]
+}
+
+model Order {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+  amount     Float
+  createdAt  DateTime @default(now())
+}
+
+model Campaign {
+  id                  String          @id @default(cuid())
+  name                String
+  goal                String
+  audienceDescription String?
+  generatedMessage    String?
+  recommendedChannel  String?
+  predictedRevenue    Float?
+  predictedOpenRate   Float?
+  status              String          @default("draft") // e.g., draft, active, completed
+  createdAt           DateTime        @default(now())
+  communications      Communication[]
+}
+
+model Communication {
+  id         String   @id @default(cuid())
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id])
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+  channel    String
+  status     String   // sent, delivered, failed, opened, clicked, converted
+  createdAt  DateTime @default(now())
+}
