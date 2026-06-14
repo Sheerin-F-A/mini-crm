@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Sparkles, MessageSquare, Target, Zap, BarChart2, TrendingUp, Mail, MessageCircle, Smartphone, Minus, Square, X } from 'lucide-react';
+import { Sparkles, MessageSquare, Target, Zap, BarChart2, TrendingUp, Mail, MessageCircle, Smartphone, Minus, Square, X, Users } from 'lucide-react';
 
 type CampaignData = {
   audience: string;
