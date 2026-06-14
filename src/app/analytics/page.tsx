@@ -190,15 +190,15 @@ export default function Analytics() {
                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#000" strokeOpacity={0.2} />
                         <XAxis 
                           dataKey="name" 
-                          axisLine={{ stroke: '#000', strokeWidth: 2 }} 
+                          axisLine={{ stroke: 'var(--retro-border)', strokeWidth: 2 }} 
                           tickLine={false} 
-                          tick={{ fill: '#000', fontWeight: 'bold', fontSize: 12, textTransform: 'uppercase' }} 
+                          tick={{ fill: 'var(--retro-border)', fontWeight: 'bold', fontSize: 12 }} 
                           dy={10} 
                         />
                         <YAxis 
-                          axisLine={{ stroke: '#000', strokeWidth: 2 }} 
+                          axisLine={{ stroke: 'var(--retro-border)', strokeWidth: 2 }} 
                           tickLine={false} 
-                          tick={{ fill: '#000', fontWeight: 'bold', fontSize: 12 }} 
+                          tick={{ fill: 'var(--retro-border)', fontWeight: 'bold', fontSize: 12 }} 
                         />
                         <Tooltip content={<CustomTooltip />} />
                         <Bar dataKey="value" maxBarSize={80} stroke="#000" strokeWidth={2}>
