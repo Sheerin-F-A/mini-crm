@@ -1,39 +1,71 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4f0eb; /* Beige retro background */
-  --foreground: #111827;
+  --retro-bg: #f4f0eb;
+  --retro-panel: #ffffff;
+  --retro-border: #000000;
+  --retro-text: #111827;
+  --retro-text-muted: #64748b;
+  --retro-header: #e2e8f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --retro-bg: #0f172a; /* Slate 900 */
+    --retro-panel: #1e293b; /* Slate 800 */
+    --retro-border: #f8fafc; /* Slate 50 */
+    --retro-text: #f8fafc;
+    --retro-text-muted: #94a3b8; /* Slate 400 */
+    --retro-header: #334155; /* Slate 700 */
+  }
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--retro-bg);
+  --color-foreground: var(--retro-text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-background);
+  color: var(--color-foreground);
 }
 
 @layer utilities {
   .retro-box {
-    @apply bg-white border-2 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+    @apply bg-[var(--retro-panel)] border-2 border-[var(--retro-border)] rounded-none;
+    box-shadow: 4px 4px 0px 0px var(--retro-border);
   }
   .retro-box-sm {
-    @apply bg-white border-2 border-black rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+    @apply bg-[var(--retro-panel)] border-2 border-[var(--retro-border)] rounded-none;
+    box-shadow: 2px 2px 0px 0px var(--retro-border);
   }
   .retro-btn {
-    @apply border-2 border-black rounded-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all font-bold active:shadow-none active:translate-x-[4px] active:translate-y-[4px];
+    @apply border-2 border-[var(--retro-border)] rounded-none transition-all font-bold;
+    box-shadow: 4px 4px 0px 0px var(--retro-border);
+  }
+  .retro-btn:hover {
+    box-shadow: 2px 2px 0px 0px var(--retro-border);
+    transform: translate(2px, 2px);
+  }
+  .retro-btn:active {
+    box-shadow: none;
+    transform: translate(4px, 4px);
   }
   .retro-input {
-    @apply border-2 border-black rounded-none shadow-[inset_2px_2px_0px_rgba(0,0,0,0.1)] focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-[#f4f0eb] bg-white text-black;
+    @apply border-2 border-[var(--retro-border)] rounded-none focus:outline-none focus:ring-2 focus:ring-[var(--retro-border)] focus:ring-offset-2 bg-[var(--retro-panel)] text-[var(--retro-text)];
+    box-shadow: inset 2px 2px 0px rgba(0,0,0,0.1);
+  }
+  @media (prefers-color-scheme: dark) {
+    .retro-input {
+      box-shadow: inset 2px 2px 0px rgba(0,0,0,0.5);
+    }
   }
   .retro-window-header {
-    @apply bg-slate-200 border-b-2 border-black px-3 py-1 flex items-center justify-between font-bold text-sm uppercase tracking-wide;
+    @apply border-b-2 border-[var(--retro-border)] px-3 py-1 flex items-center justify-between font-bold text-sm uppercase tracking-wide text-[var(--retro-text)];
   }
   .retro-dot {
-    @apply w-3 h-3 rounded-full border-2 border-black;
+    @apply w-3 h-3 rounded-full border-2 border-[var(--retro-border)];
   }
 }

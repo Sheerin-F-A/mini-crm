@@ -85,19 +85,19 @@ export default function CampaignCopilot() {
 
   const getChannelIcon = (channel: string) => {
     switch (channel) {
-      case 'WhatsApp': return <MessageCircle className="text-black" />;
-      case 'Email': return <Mail className="text-black" />;
+      case 'WhatsApp': return <MessageCircle className="text-[var(--retro-text)]" />;
+      case 'Email': return <Mail className="text-[var(--retro-text)]" />;
       case 'SMS':
-      case 'RCS': return <Smartphone className="text-black" />;
-      default: return <MessageSquare className="text-black" />;
+      case 'RCS': return <Smartphone className="text-[var(--retro-text)]" />;
+      default: return <MessageSquare className="text-[var(--retro-text)]" />;
     }
   };
 
   return (
     <div className="p-8 max-w-5xl mx-auto w-full space-y-8 pb-20 font-sans">
-      <div className="border-b-4 border-black pb-4">
-        <h1 className="text-4xl font-black text-black tracking-tighter uppercase">Campaign Copilot</h1>
-        <p className="text-black font-bold mt-2 uppercase text-sm tracking-wide">Strategy_Generator.exe</p>
+      <div className="border-b-4 border-[var(--retro-border)] pb-4">
+        <h1 className="text-4xl font-black text-[var(--retro-text)] tracking-tighter uppercase">Campaign Copilot</h1>
+        <p className="text-[var(--retro-text)] font-bold mt-2 uppercase text-sm tracking-wide">Strategy_Generator.exe</p>
       </div>
 
       <div className="retro-box overflow-hidden">
@@ -107,10 +107,10 @@ export default function CampaignCopilot() {
             <span>INPUT_PARAMETERS</span>
           </div>
         </div>
-        <div className="p-6 bg-[#f4f0eb]">
+        <div className="p-6 bg-[var(--retro-bg)]">
           <form onSubmit={handleGenerate} className="space-y-4">
             <div>
-              <label className="block text-xs font-black uppercase text-black mb-2 tracking-wider">Campaign Goal_</label>
+              <label className="block text-xs font-black uppercase text-[var(--retro-text)] mb-2 tracking-wider">Campaign Goal_</label>
               <textarea
                 rows={3}
                 className="retro-input w-full p-4 font-bold placeholder-slate-500 resize-none"
@@ -123,10 +123,10 @@ export default function CampaignCopilot() {
               <button
                 type="submit"
                 disabled={loading || !goal.trim()}
-                className="retro-btn bg-[#ffcf54] text-black px-8 py-3 uppercase flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="retro-btn bg-[#ffcf54] text-[var(--retro-text)] px-8 py-3 uppercase flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
-                  <div className="animate-spin w-4 h-4 border-4 border-black border-t-transparent rounded-full"></div>
+                  <div className="animate-spin w-4 h-4 border-4 border-[var(--retro-border)] border-t-transparent rounded-full"></div>
                 ) : (
                   <Sparkles size={18} strokeWidth={3} />
                 )}
@@ -149,33 +149,33 @@ export default function CampaignCopilot() {
             
             {/* Target Audience */}
             <div className="retro-box overflow-hidden flex flex-col">
-              <div className="retro-window-header bg-slate-200">
+              <div className="retro-window-header bg-[var(--retro-header)]">
                 <div className="flex items-center gap-2">
                   <Users size={16} />
                   <span>AUDIENCE_PROFILE</span>
                 </div>
               </div>
-              <div className="p-6 bg-white flex-1">
-                <p className="text-black font-bold leading-relaxed">{campaign.audience}</p>
+              <div className="p-6 bg-[var(--retro-panel)] flex-1">
+                <p className="text-[var(--retro-text)] font-bold leading-relaxed">{campaign.audience}</p>
               </div>
             </div>
 
             {/* Channel Recommendation */}
             <div className="retro-box overflow-hidden flex flex-col">
-              <div className="retro-window-header bg-slate-200">
+              <div className="retro-window-header bg-[var(--retro-header)]">
                 <div className="flex items-center gap-2">
                   <Zap size={16} />
                   <span>CHANNEL_STRATEGY</span>
                 </div>
               </div>
-              <div className="p-6 bg-white flex-1">
+              <div className="p-6 bg-[var(--retro-panel)] flex-1">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-3 bg-[#b4e6ff] border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  <div className="p-3 bg-[#b4e6ff] border-2 border-[var(--retro-border)] shadow-[2px_2px_0px_0px_var(--retro-border)]">
                     {getChannelIcon(campaign.channelRecommendation.channel)}
                   </div>
                   <h3 className="font-black text-2xl uppercase tracking-tight">{campaign.channelRecommendation.channel}</h3>
                 </div>
-                <p className="text-black font-bold leading-relaxed">{campaign.channelRecommendation.reason}</p>
+                <p className="text-[var(--retro-text)] font-bold leading-relaxed">{campaign.channelRecommendation.reason}</p>
               </div>
             </div>
           </div>
@@ -194,17 +194,17 @@ export default function CampaignCopilot() {
               </div>
             </div>
             
-            <div className="p-8 bg-[#f4f0eb] space-y-6">
-              <div className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-6">
-                <p className="text-xs font-black text-slate-500 uppercase tracking-wider mb-2">Subject_Header</p>
-                <div className="font-black text-xl text-black">
+            <div className="p-8 bg-[var(--retro-bg)] space-y-6">
+              <div className="bg-[var(--retro-panel)] border-2 border-[var(--retro-border)] shadow-[4px_4px_0px_0px_var(--retro-border)] p-6">
+                <p className="text-xs font-black text-[var(--retro-text-muted)] uppercase tracking-wider mb-2">Subject_Header</p>
+                <div className="font-black text-xl text-[var(--retro-text)]">
                   {campaign.message.subject}
                 </div>
               </div>
               
-              <div className="bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-6">
-                <p className="text-xs font-black text-slate-500 uppercase tracking-wider mb-2">Message_Body</p>
-                <div className="font-bold text-black whitespace-pre-wrap leading-relaxed">
+              <div className="bg-[var(--retro-panel)] border-2 border-[var(--retro-border)] shadow-[4px_4px_0px_0px_var(--retro-border)] p-6">
+                <p className="text-xs font-black text-[var(--retro-text-muted)] uppercase tracking-wider mb-2">Message_Body</p>
+                <div className="font-bold text-[var(--retro-text)] whitespace-pre-wrap leading-relaxed">
                   {campaign.message.body}
                 </div>
               </div>
@@ -218,8 +218,8 @@ export default function CampaignCopilot() {
           </div>
 
           {/* Predicted Performance */}
-          <div className="retro-box overflow-hidden bg-black text-white border-black">
-            <div className="border-b-2 border-white px-4 py-2 font-bold uppercase tracking-wide flex items-center justify-between">
+          <div className="retro-box overflow-hidden bg-black text-white border-[var(--retro-border)]">
+            <div className="border-b-2 border-[var(--retro-panel)] px-4 py-2 font-bold uppercase tracking-wide flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <BarChart2 size={16} />
                 <span>PREDICTIVE_MODELS.dll</span>
@@ -251,18 +251,18 @@ export default function CampaignCopilot() {
           
           <div className="flex justify-end pt-4">
             {launchSuccess ? (
-              <div className="retro-box bg-[#a8e6cf] text-black px-8 py-4 flex items-center gap-3 font-black uppercase">
+              <div className="retro-box bg-[#a8e6cf] text-[var(--retro-text)] px-8 py-4 flex items-center gap-3 font-black uppercase">
                 <Zap size={24} fill="currentColor" />
                 CAMPAIGN DEPLOYED TO {launchStats?.size} NODES
               </div>
             ) : (
               <button 
-                className="retro-btn bg-[#ffcf54] text-black px-10 py-4 uppercase flex items-center gap-3 text-lg disabled:opacity-50"
+                className="retro-btn bg-[#ffcf54] text-[var(--retro-text)] px-10 py-4 uppercase flex items-center gap-3 text-lg disabled:opacity-50"
                 onClick={handleLaunch}
                 disabled={isLaunching}
               >
                 {isLaunching ? (
-                  <div className="animate-spin w-6 h-6 border-4 border-black border-t-transparent rounded-full"></div>
+                  <div className="animate-spin w-6 h-6 border-4 border-[var(--retro-border)] border-t-transparent rounded-full"></div>
                 ) : (
                   <Zap size={24} fill="currentColor" strokeWidth={2} />
                 )}

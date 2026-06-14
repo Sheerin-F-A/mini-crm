@@ -51,9 +51,9 @@ export default function AudienceBuilder() {
 
   return (
     <div className="p-8 max-w-5xl mx-auto w-full space-y-8 pb-20 font-sans">
-      <div className="border-b-4 border-black pb-4">
-        <h1 className="text-4xl font-black text-black tracking-tighter uppercase">Audience Builder</h1>
-        <p className="text-black font-bold mt-2 uppercase text-sm tracking-wide">Query_Engine.exe</p>
+      <div className="border-b-4 border-[var(--retro-border)] pb-4">
+        <h1 className="text-4xl font-black text-[var(--retro-text)] tracking-tighter uppercase">Audience Builder</h1>
+        <p className="text-[var(--retro-text)] font-bold mt-2 uppercase text-sm tracking-wide">Query_Engine.exe</p>
       </div>
 
       <div className="retro-box overflow-hidden">
@@ -69,7 +69,7 @@ export default function AudienceBuilder() {
           </div>
         </div>
         
-        <div className="p-6 bg-[#f4f0eb]">
+        <div className="p-6 bg-[var(--retro-bg)]">
           <form onSubmit={handleSearch} className="flex gap-4">
             <input
               type="text"
@@ -81,10 +81,10 @@ export default function AudienceBuilder() {
             <button
               type="submit"
               disabled={loading || !query.trim()}
-              className="retro-btn bg-[#a8e6cf] text-black px-8 py-4 uppercase flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+              className="retro-btn bg-[#a8e6cf] text-[var(--retro-text)] px-8 py-4 uppercase flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
             >
               {loading ? (
-                <div className="animate-spin w-5 h-5 border-4 border-black border-t-transparent rounded-full"></div>
+                <div className="animate-spin w-5 h-5 border-4 border-[var(--retro-border)] border-t-transparent rounded-full"></div>
               ) : (
                 <Bot strokeWidth={3} />
               )}
@@ -104,25 +104,25 @@ export default function AudienceBuilder() {
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="retro-box bg-[#ffcf54] p-6 col-span-1 flex flex-col justify-center items-center text-center">
-              <Users className="h-12 w-12 text-black mb-4" strokeWidth={2.5} />
+              <Users className="h-12 w-12 text-[var(--retro-text)] mb-4" strokeWidth={2.5} />
               <p className="text-xs font-black uppercase tracking-wider mb-2">Results_Found</p>
               <p className="text-6xl font-black tracking-tighter">{result.audienceSize.toLocaleString()}</p>
             </div>
             
-            <div className="retro-box bg-white p-0 col-span-2 flex flex-col">
-              <div className="border-b-2 border-black bg-slate-200 px-4 py-2 font-bold uppercase text-xs flex items-center gap-2">
+            <div className="retro-box bg-[var(--retro-panel)] p-0 col-span-2 flex flex-col">
+              <div className="border-b-2 border-[var(--retro-border)] bg-[var(--retro-header)] px-4 py-2 font-bold uppercase text-xs flex items-center gap-2">
                 <Bot size={14} /> AI_ANALYSIS_LOG
               </div>
               <div className="p-6 flex-1">
-                <p className="text-black font-bold text-lg leading-relaxed mb-6">{result.explanation}</p>
+                <p className="text-[var(--retro-text)] font-bold text-lg leading-relaxed mb-6">{result.explanation}</p>
                 
-                <div className="p-4 bg-[#f4f0eb] border-2 border-black">
+                <div className="p-4 bg-[var(--retro-bg)] border-2 border-[var(--retro-border)]">
                   <p className="text-xs font-black uppercase tracking-wider mb-3">Applied_Filters</p>
                   <div className="flex flex-wrap gap-3">
                     {Object.entries(result.filters).map(([key, val]) => {
                       if (key === 'explanation' || val === null || val === undefined) return null;
                       return (
-                        <span key={key} className="px-3 py-1 bg-white border-2 border-black text-black text-sm font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                        <span key={key} className="px-3 py-1 bg-[var(--retro-panel)] border-2 border-[var(--retro-border)] text-[var(--retro-text)] text-sm font-bold shadow-[2px_2px_0px_0px_var(--retro-border)]">
                           {key}: {String(val)}
                         </span>
                       );
@@ -133,7 +133,7 @@ export default function AudienceBuilder() {
             </div>
           </div>
 
-          <div className="retro-box overflow-hidden bg-white">
+          <div className="retro-box overflow-hidden bg-[var(--retro-panel)]">
             <div className="retro-window-header bg-[#ffaaa5]">
               <div className="flex items-center gap-2">
                 <Users size={16} />
@@ -141,8 +141,8 @@ export default function AudienceBuilder() {
               </div>
             </div>
             
-            <div className="overflow-x-auto p-4 bg-[#f4f0eb]">
-              <table className="w-full text-left border-2 border-black bg-white">
+            <div className="overflow-x-auto p-4 bg-[var(--retro-bg)]">
+              <table className="w-full text-left border-2 border-[var(--retro-border)] bg-[var(--retro-panel)]">
                 <thead>
                   <tr className="bg-black text-white text-xs uppercase font-black tracking-wider">
                     <th className="px-6 py-4 border-r border-slate-700">Customer</th>
@@ -151,20 +151,20 @@ export default function AudienceBuilder() {
                     <th className="px-6 py-4 text-right">Last Order</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y-2 divide-black">
+                <tbody className="divide-y-2 divide-[var(--retro-border)]">
                   {result.sampleCustomers.map((customer) => (
                     <tr key={customer.id} className="hover:bg-[#b4e6ff] transition-colors font-bold text-sm">
-                      <td className="px-6 py-4 border-r-2 border-black">
-                        <div className="text-black uppercase">{customer.name}</div>
-                        <div className="text-slate-500 text-xs mt-1 lowercase">{customer.email}</div>
+                      <td className="px-6 py-4 border-r-2 border-[var(--retro-border)]">
+                        <div className="text-[var(--retro-text)] uppercase">{customer.name}</div>
+                        <div className="text-[var(--retro-text-muted)] text-xs mt-1 lowercase">{customer.email}</div>
                       </td>
-                      <td className="px-6 py-4 border-r-2 border-black uppercase">
-                        <div className="flex items-center gap-2 text-black">
+                      <td className="px-6 py-4 border-r-2 border-[var(--retro-border)] uppercase">
+                        <div className="flex items-center gap-2 text-[var(--retro-text)]">
                           <MapPin size={16} />
                           {customer.city}
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-right border-r-2 border-black">
+                      <td className="px-6 py-4 text-right border-r-2 border-[var(--retro-border)]">
                         <div className="flex items-center justify-end gap-1 text-[#10b981] font-black">
                           <IndianRupee size={16} />
                           {customer.totalSpend.toLocaleString()}
@@ -182,7 +182,7 @@ export default function AudienceBuilder() {
                   ))}
                   {result.sampleCustomers.length === 0 && (
                     <tr>
-                      <td colSpan={4} className="px-6 py-12 text-center font-bold text-slate-500 uppercase">
+                      <td colSpan={4} className="px-6 py-12 text-center font-bold text-[var(--retro-text-muted)] uppercase">
                         NO_MATCHING_RECORDS_FOUND
                       </td>
                     </tr>

@@ -36,7 +36,7 @@ export default function Dashboard() {
   if (loading) {
     return (
       <div className="flex h-full items-center justify-center p-8">
-        <div className="retro-box p-6 bg-[#ffcf54] text-black font-bold flex items-center gap-3">
+        <div className="retro-box p-6 bg-[#ffcf54] text-[var(--retro-text)] font-bold flex items-center gap-3">
           <Activity className="animate-spin" />
           LOADING SYSTEM DATA...
         </div>
@@ -47,7 +47,7 @@ export default function Dashboard() {
   if (!stats) {
     return (
       <div className="p-8">
-        <div className="retro-box p-6 bg-[#ff6b6b] text-white font-bold border-2 border-black">
+        <div className="retro-box p-6 bg-[#ff6b6b] text-white font-bold border-2 border-[var(--retro-border)]">
           SYSTEM ERROR: FAILED TO LOAD DASHBOARD DATA.
         </div>
       </div>
@@ -56,10 +56,10 @@ export default function Dashboard() {
 
   return (
     <div className="p-8 max-w-7xl mx-auto w-full space-y-8 font-sans">
-      <div className="flex justify-between items-end border-b-4 border-black pb-4">
+      <div className="flex justify-between items-end border-b-4 border-[var(--retro-border)] pb-4">
         <div>
-          <h1 className="text-4xl font-black text-black tracking-tighter uppercase">Overview</h1>
-          <p className="text-black font-bold mt-2 uppercase text-sm tracking-wide">Sys_Admin_Dashboard.exe</p>
+          <h1 className="text-4xl font-black text-[var(--retro-text)] tracking-tighter uppercase">Overview</h1>
+          <p className="text-[var(--retro-text)] font-bold mt-2 uppercase text-sm tracking-wide">Sys_Admin_Dashboard.exe</p>
         </div>
       </div>
 
@@ -85,32 +85,32 @@ export default function Dashboard() {
           </div>
         </div>
         
-        <div className="p-6 bg-white">
+        <div className="p-6 bg-[var(--retro-panel)]">
           <p className="font-bold mb-6 text-sm">System scan complete. 2 high-value segments identified.</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {stats.aiOpportunities?.map((opp, idx) => (
-              <div key={idx} className="retro-box-sm bg-[#f4f0eb] p-0 flex flex-col h-full relative group">
-                <div className="bg-black text-white px-3 py-1 font-bold text-xs uppercase tracking-wide border-b-2 border-black flex justify-between">
+              <div key={idx} className="retro-box-sm bg-[var(--retro-bg)] p-0 flex flex-col h-full relative group">
+                <div className="bg-black text-white px-3 py-1 font-bold text-xs uppercase tracking-wide border-b-2 border-[var(--retro-border)] flex justify-between">
                   <span>Target_{idx + 1}</span>
                   <span className="text-[#a8e6cf]">Match: 98%</span>
                 </div>
                 
                 <div className="p-5 flex-1">
-                  <h3 className="font-black text-black text-xl mb-4 leading-tight">{opp.title}</h3>
+                  <h3 className="font-black text-[var(--retro-text)] text-xl mb-4 leading-tight">{opp.title}</h3>
                   
-                  <div className="grid grid-cols-2 gap-4 mb-5 border-2 border-black p-3 bg-white">
+                  <div className="grid grid-cols-2 gap-4 mb-5 border-2 border-[var(--retro-border)] p-3 bg-[var(--retro-panel)]">
                     <div>
-                      <p className="text-[10px] font-black text-slate-500 uppercase mb-1">Audience Size</p>
-                      <p className="text-xl font-black text-black">{opp.audienceSize.toLocaleString()}</p>
+                      <p className="text-[10px] font-black text-[var(--retro-text-muted)] uppercase mb-1">Audience Size</p>
+                      <p className="text-xl font-black text-[var(--retro-text)]">{opp.audienceSize.toLocaleString()}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] font-black text-slate-500 uppercase mb-1">Est. Revenue</p>
+                      <p className="text-[10px] font-black text-[var(--retro-text-muted)] uppercase mb-1">Est. Revenue</p>
                       <p className="text-xl font-black text-[#10b981]">₹{opp.potentialRevenue.toLocaleString()}</p>
                     </div>
                   </div>
                   
-                  <div className="bg-[#ffcf54] border-2 border-black p-3 text-sm text-black font-bold flex gap-2 items-start shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  <div className="bg-[#ffcf54] border-2 border-[var(--retro-border)] p-3 text-sm text-[var(--retro-text)] font-bold flex gap-2 items-start shadow-[2px_2px_0px_0px_var(--retro-border)]">
                     <ArrowRight size={16} className="mt-0.5 shrink-0" strokeWidth={3} />
                     <p className="leading-snug">{opp.suggestedAction}</p>
                   </div>
@@ -127,12 +127,12 @@ export default function Dashboard() {
 function StatWindow({ title, value, icon: Icon, bg }: any) {
   return (
     <div className={`retro-box ${bg} p-0 flex flex-col`}>
-      <div className="border-b-2 border-black px-3 py-1 flex items-center justify-between font-bold text-xs uppercase tracking-wide bg-white/50">
+      <div className="border-b-2 border-[var(--retro-border)] px-3 py-1 flex items-center justify-between font-bold text-xs uppercase tracking-wide bg-[var(--retro-panel)]/50">
         <span>{title}.dat</span>
         <Icon size={14} />
       </div>
       <div className="p-5 flex-1 flex flex-col justify-end">
-        <p className="text-4xl font-black text-black tracking-tighter">{value}</p>
+        <p className="text-4xl font-black text-[var(--retro-text)] tracking-tighter">{value}</p>
       </div>
     </div>
   );
